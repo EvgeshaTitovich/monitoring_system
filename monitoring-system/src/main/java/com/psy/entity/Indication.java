@@ -1,8 +1,5 @@
 package com.psy.entity;
 
-import com.psy.Application;
-import com.psy.Application.Info;
-
 public class Indication {
 
 
@@ -13,10 +10,6 @@ public class Indication {
     private double i;
     private double phi;
     private double v;
-
-    public Indication(){
-
-    }
 
     @Override
     public String toString() {
