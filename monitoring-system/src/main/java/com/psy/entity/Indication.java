@@ -1,7 +1,8 @@
 package com.psy.entity;
 
-public class Indication {
+import java.sql.Timestamp;
 
+public class Indication {
 
     private int id;
     private double p ;
@@ -10,6 +11,7 @@ public class Indication {
     private double i;
     private double phi;
     private double v;
+    Timestamp timestamp;
 
     @Override
     public String toString() {
@@ -21,10 +23,11 @@ public class Indication {
                 ", i=" + i +
                 ", phi=" + phi +
                 ", v=" + v +
+                ", timestamp=" + timestamp +
                 '}';
     }
 
-    public Indication(int id, Double p, Double q, Double u, Double i, Double phi, Double v) {
+    public Indication(int id, Double p, Double q, Double u, Double i, Double phi, Double v, Timestamp timestamp) {
         this.id = id;
         this.p = p;
         this.q = q;
@@ -32,7 +35,10 @@ public class Indication {
         this.i = i;
         this.phi = phi;
         this.v = v;
+        this.timestamp = timestamp;
     }
+
+    public Timestamp getTimestamp() { return timestamp; }
 
     public int getId() {
         return id;

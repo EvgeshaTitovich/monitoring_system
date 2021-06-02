@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -58,6 +60,8 @@ public class DataCollector {
         String x = writeBytes(new byte[]{0, 4, 46, 0, 0, 1, 0x33, 0x39});
         Indication indication = parse(x);
         var savedInformation = indicationDao.save(indication);
+      var indications = IndicationDao.getInstance().list();
+      System.out.println(indications);
         System.out.println(savedInformation);
     } catch (SerialPortException | InterruptedException e) {
       e.printStackTrace();
@@ -108,7 +112,8 @@ public class DataCollector {
       d = d + 4;
       e = e + 4;
     }
-    return new Indication(0, result[0], result[1], result[2], result[3], result[4], result[5]);
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    return new Indication(0, result[0], result[1], result[2], result[3], result[4], result[5], timestamp);
   }
 
   static class PortEventListener implements SerialPortEventListener {

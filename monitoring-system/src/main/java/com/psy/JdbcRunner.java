@@ -1,17 +1,15 @@
 package com.psy;
 
 import com.psy.util.ConnectionManager;
-import org.springframework.aop.scope.ScopedProxyUtils;
-
 import java.sql.Driver;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 public class JdbcRunner {
 
     public static void main(String[] args) throws SQLException {
         Class<Driver> driverClass = Driver.class;
-        String sql = "SELECT * FROM indications" ;
+        String sql = "SELECT * FROM indication" ;
 
 
         try (var connection = ConnectionManager.get();
